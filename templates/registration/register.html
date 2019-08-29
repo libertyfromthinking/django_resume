@@ -1,14 +1,24 @@
 {% extends "index.html" %}
 {% load staticfiles %}
 {% block content %}
+<style>
+.form-control{
+    width:40%;
+    heigth:30px;
+    display:inline;
+}
+</style>
+<br>
+                <h2>회원가입</h2>
+                <br>
                 <form action="." method="post">{% csrf_token %}
                     {% if form.errors %}
                     에러입니다. 다시 입력하세요.
                     {% endif %}
-                    {{form.username.label_tag}}{{form.username}}<br>
-                    {{form.password1.label_tag}}{{form.password1}}<br>
-                    {{form.password2.label_tag}}{{form.password2}}<br>
-                    <input type="submit" value="회원가입"/>
+                    ID : <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username" class="form-control"><br>
+                    패스워드 : <input type="password" name="password1" required="" id="id_password1" class="form-control"><br>
+                    패스워드 확인 : <input type="password" name="password2" required="" id="id_password2" class="form-control"><br><br>
+                    <input type="submit" class="btn btn-outline-secondary btn-sm" value="회원가입"/>
                 </form>
 
                

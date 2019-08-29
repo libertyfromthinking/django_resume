@@ -4,7 +4,7 @@ from .views import *
 app_name = 'intro'
 
 urlpatterns = [
-    path('', MainTV.as_view(),name='main'),
+    path('',ResumeLV.as_view(),name='main'),
     path('resume/', ResumeLV.as_view(),name='resume'),
     path('coverletter/', CoverletterLV.as_view(), name='coverletter'),
     path('tech/', TechLV.as_view(), name='tech'),

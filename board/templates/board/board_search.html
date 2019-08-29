@@ -2,10 +2,10 @@
 {% load staticfiles %}
 {% block content %}
 <br>
-                        <h2 class="page-title">검색</h2>
+                        <h2 class="page-title">게시판 자료 검색</h2>
                 <br>
        <form action="." method="POST">{%csrf_token%}
-            {{form.as_table}}
+            <p style="width:50%;">{{form.as_table}}</p>
             <input type="submit" class="btn btn-outline-secondary btn-sm"value="검색">
             </form>
             

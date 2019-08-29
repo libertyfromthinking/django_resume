@@ -1,10 +1,12 @@
 {% extends "index.html" %}
 {% load staticfiles %}
 {% block content %}
-                <br>
+<br> 
+<h2>삭제 확인</h2>
+<br>
 <form action="." method="post">{% csrf_token %}
-삭제하시겠습니까?
-<input type="submit" value="삭제하기"/>
+<h4>삭제하시겠습니까?</h4><br>
+<input class="btn btn-outline-secondary btn-sm" type="submit" value="삭제하기"/>
 </form>    
 {% endblock %}
 

@@ -1,17 +1,26 @@
 {% extends "index.html" %}
 {% load staticfiles %}
 {% block content %}
-  
-                <br>
-       <form method="POST" action="." enctype="multipart/form-data">{% csrf_token %}
-        <p>{{ form.title }}</p>
-        <p>{{ form.content}}</p>
-        <p>{{ form.image }}</p>
-        <p>
-        
-        <button class="btn btn-outline-secondary btn-sm" type="submit">저장</button>
-        </p>
-        </form>
-
+<style>
+.form-control{
+    width:70%;
+    heigth:30px;
     
+}
+</style>
+<br>
+<h2 class="page-title">게시글 작성/수정</h2>
+<br>
+<form method="POST" action="." enctype="multipart/form-data">{% csrf_token %}
+{% comment %} <p><input type="text" name="title" maxlength="50" placeholder="제목을 입력해 주세요" class="form-control" required="" id="id_title"></p>
+<p><textarea name="content" cols="30" rows="10" placeholder="내용을 입력해 주세요" class="form-control" required="" id="id_content"></textarea></p>
+<p><input type="file" name="image" accept="image/*" class="btn btn-light btn-sm" id="id_image"></p> {% endcomment %}
+<p>{{form.title}}</p>
+<p>{{form.content}}</p>
+<p>{{form.image}}</p>
+<p><button class="btn btn-outline-secondary btn-sm" type="submit">저장</button></p>
+
+</form>
+
+
 {% endblock %}

@@ -59,8 +59,9 @@ class BoardCreateView(LoginRequiredMixin, CreateView):
 
 class BoardUpdateView(SelfSuperUserRequiredMixin, UpdateView):
     model = Board
+    form_class = BoardForm
     template_name = 'board/board_image_form.html'
-    fields = ['title', 'content', 'image']
+    # fields = ['title', 'content', 'image']
     success_url = reverse_lazy('board:list')
 
 class BoardDeleteView(SelfSuperUserRequiredMixin, DeleteView):

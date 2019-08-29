@@ -1,9 +1,9 @@
 {% extends "index.html" %}
 {% load staticfiles %}
 {% block content %}
-                        <h2 class="page-title">게시판</h2>
-                <br>
-        권한이 없습니다. <a href="{% url 'board:list' %}">리스트로 돌아가기</a><br>
+   <br> 
+             <h2>권한이 없습니다.</h2>
+             <a role="button" class="btn btn-outline-secondary btn-sm" href="{% url 'intro:main' %}">메인화면 가기</a>
         
     
 {% endblock %}

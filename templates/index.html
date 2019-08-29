@@ -25,14 +25,14 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"><a href="{% url 'intro:resume' %}">권민수님의 이력서</a> </div>
+      <a class="text-dark" href="{% url 'intro:resume' %}"><div class="sidebar-heading bg-light">윤딴딴의 이력서 </div></a>
       <div class="list-group list-group-flush">
         <a href="{% url 'intro:resume' %}" class="list-group-item list-group-item-action bg-light">이력보기</a>
         <a href="{% url 'intro:coverletter' %}" class="list-group-item list-group-item-action bg-light">자기소개란</a>
         <a href="{% url 'intro:tech' %}" class="list-group-item list-group-item-action bg-light">기술스택</a>
         <a href="{% url 'intro:project' %}" class="list-group-item list-group-item-action bg-light">진행했던 프로젝트</a>
         <a href="{% url 'board:list' %}" class="list-group-item list-group-item-action bg-light">게시판</a>
-        <a href="{% url 'board:search' %}" class="list-group-item list-group-item-action bg-light">검색</a>
+        <a href="{% url 'board:search' %}" class="list-group-item list-group-item-action bg-light">게시판 검색</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->

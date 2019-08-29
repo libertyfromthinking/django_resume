@@ -3,9 +3,6 @@ from .models import *
 from django.views.generic import ListView, TemplateView, DetailView
 
 # Create your views here.
-class MainTV(TemplateView):
-    template_name = 'introduction/main_list.html'
-
 class ResumeLV(ListView):
     model = Resume
     
