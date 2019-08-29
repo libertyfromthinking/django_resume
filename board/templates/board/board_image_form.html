@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block content %}
+  
+                <br>
+       <form method="POST" action="." enctype="multipart/form-data">{% csrf_token %}
+        <p>{{ form.title }}</p>
+        <p>{{ form.content}}</p>
+        <p>{{ form.image }}</p>
+        <p>
+        
+        <button class="btn btn-outline-secondary btn-sm" type="submit">저장</button>
+        </p>
+        </form>
+
+    
+{% endblock %}

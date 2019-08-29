@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block content %}
+                <form action="." method="post">{% csrf_token %}
+                    {% if form.errors %}
+                    에러입니다. 다시 입력하세요.
+                    {% endif %}
+                    {{form.username.label_tag}}{{form.username}}<br>
+                    {{form.password1.label_tag}}{{form.password1}}<br>
+                    {{form.password2.label_tag}}{{form.password2}}<br>
+                    <input type="submit" value="회원가입"/>
+                </form>
+
+               
+  
+    
+{% endblock %}

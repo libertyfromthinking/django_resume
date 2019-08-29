@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block content %}
+<br>
+                        <h2 class="page-title">검색</h2>
+                <br>
+       <form action="." method="POST">{%csrf_token%}
+            {{form.as_table}}
+            <input type="submit" class="btn btn-outline-secondary btn-sm"value="검색">
+            </form>
+            
+            {% if object_list %}
+            <p>{{ object_list.count}}건의 검색결과가 있습니다.</p>
+            {% for object in object_list %}
+            <a href='{{object.get_absolute_url}}'>{{object.title}}</a><br>
+            {% endfor %}
+
+            {% elif search_term%}
+            {{search_term}}에 대한 검색결과가 없습니다.
+            {% endif %}
+
+
+
+    
+{% endblock %}

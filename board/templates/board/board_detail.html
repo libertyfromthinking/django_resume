@@ -1,0 +1,87 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container">
+<div class="row">
+<div class="col-lg-8">
+<h1 class="mt-4">{{object.title}}</h1>
+<!--글쓴이-->
+<p class="lead">by {{object.owner.username}}</p>
+
+<!--날짜-->
+<p>{{object.modify_date}}</p>
+<hr>
+<!-- Preview Image -->
+{% if object.image%}
+<a href="{{object.image.url}}"><img src="{{object.image.url}}"/></a>
+{% endif %}
+<!-- Post Content -->
+<p class="lead">{{object.content}}</p>
+
+<hr>
+<button type="button" class="like btn btn-outline-secondary btn-sm" name="{{object.slug}}" value="좋아요" style="background-color: #ffffff; background-color: rgba( 255, 255, 255, 0.5 );"><img id="img-like" src="{% static 'img/like.png' %}" /> 좋아요</button>
+<hr>
+<a class="btn btn-outline-primary btn-sm" href="{% url 'board:update' object.slug %}">수정하기</a>
+<a class="btn btn-outline-primary btn-sm" href="{% url 'board:delete' object.slug %}">삭제하기</a>
+<span style="display:none;">{{object.update_counter}}</span>            
+
+<hr>
+{% for comment in object.comments.all %}
+
+<div class="comment">
+<div class="date">
+
+<strong>{{ comment.author }}</strong> | {{ comment.text }} | {{ comment.created_date}}
+<button class="btn btn-outline-secondary btn-sm" href="{% url 'board:remove_comment' pk=comment.pk %}"><span class="glyphicon glyphicon-remove">삭제</span></button>
+</div>
+</div>
+{% endfor %}
+
+<form method="POST" class="post-form">{% csrf_token %}
+{{ form.as_p}}
+<button type="submit" class="btn btn-outline-secondary">작성</button>
+</form>
+<script
+src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+$(".like").click(function(){
+var slug = $(this).attr('name')
+$.ajax({ // .like 버튼을 클릭하면 <새로고침> 없이 ajax로 서버와 통신하겠다.
+url: "{% url 'board:board_like' %}", // 통신할 url을 지정
+data: {'slug': slug, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, // 서버로 데이터 전송시 옵션
+method: "POST", // 데이터를 전송하는 방법을 지정
+dataType: "json", 
+success: function(response){ // 통신 성공시 - 동적으로 좋아요 갯수 변경, 유저 목록 변경
+var src='{% static "img/not_like.png" %}'
+var src2='{% static "img/like.png" %}'
+
+$("#img-like").attr("src", src)
+$("#count-"+slug).html(response.like_count+"개");
+var users = $("#like-user-"+slug).text();
+if(response.message == "좋아요"){
+$("#img-like").attr("src", src)
+}else{
+$("#img-like").attr("src", src2)
+}
+
+},
+error: function(request, status, error){ // 통신 실패시 - 로그인 페이지 리다이렉트
+alert("로그인이 필요한 서비스입니다. 로그인페이지로 이동합니다.")
+console.log(request)
+console.log(requestS.responseText)
+console.log(request.status)
+console.log(error)
+console.log(status)
+window.location.replace("/accounts/login/")
+//  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+},
+});
+})
+</script>
+
+{% endblock %}
+

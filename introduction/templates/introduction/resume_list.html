@@ -1,0 +1,114 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block content %}
+<style>
+  .container{
+    margin-left:0;
+    padding-left:0;
+  }
+  .full-name{
+    font-family: 'Lato', sans-serif;
+  }
+  .first-name{
+    font-weight:700;
+  }
+  .last-name{
+    font-weight:300;
+  }
+  .info{
+    color:#999
+  }
+  .position {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: underline;
+  }
+  .section__title {
+    letter-spacing: 2px;
+    color: #54AFE4;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .name{
+    font-weight:bold;
+  } 
+</style>
+{% for object in object_list%}
+<br>
+<div class="container">
+  <div class="header">
+    <div class="full-name">
+      <h2>
+      {{object.name}}
+      </h2>
+    </div>
+    <div class="contact-info">
+    <span class="info">나이 </span>
+      <span class="email-val">{{object.age}}</span> &nbsp;&nbsp; <span class="info"> | </span> &nbsp;&nbsp;
+      <span class="info">이메일 </span>
+      <span class="email-val">{{object.email}}</span> <br>
+      <span class="info">Git </span>
+      <span class="email-val">{{object.git_addr}}</span> &nbsp;&nbsp;<span class="info"> | </span> &nbsp;&nbsp;
+      <span class="info">연락처 </span>
+      <span class="email-val">{{object.phone}}</span> <br>
+      <span class="info">취미 </span>
+      <span class="email-val">{{object.phone}}</span> &nbsp;&nbsp;<span class="info"> | </span> &nbsp;&nbsp;
+      <span class="info">병역 </span>
+      <span class="email-val">{{object.military_service}}</span>
+    </div>
+    <br>
+    <div class="about">
+      <span class="position">{{object.job_objective}}</span>
+      <span class="desc">
+        저는 파이썬과 장고를 공부했습니다. 블라블라블라입니다. 치킨과 피자가 먹고 싶고 햄버거도 먹고 싶지만 먹은 후엔 속이 더부룩한 게 싫어 먹지 않습니다. 이번 여름은 작년에 비해 매우 짧다고 느껴집니다. 느껴지는 게 아니라 사실이 그렇습니다. 공부는 왜 하기 싫은걸까요. 감사합니다.
+      </span>
+    </div>
+  </div>
+  <br>
+      <div class="section__title">학력</div>
+        <div class="section__list-item">
+          <div class="name">Fr developer</div>
+          <div class="desc">did This and that</div>
+          <br>
+          <div class="name">Akount</div>
+          <div class="addr">San Monica, CA</div>
+          <div class="duration">Jan 2011 - Feb 2015</div>
+          <br>
+          <div class="name">Fr developer</div>
+          <div class="desc">did This and that</div>
+        </div>
+<br><br>
+<div class="section__title">경력</div>
+        <div class="section__list-item">
+          <div class="name">Sample Institute of technology</div>
+          <div class="addr">San Fr, CA</div>
+          <div class="duration">Jan 2011 - Feb 2015</div>
+          <br>
+          <div class="name">Sample Institute of technology</div>
+          <div class="addr">San Fr, CA</div>
+          <div class="duration">Jan 2011 - Feb 2015</div>
+        </div>
+<br><br>
+<div class="section__title">자격증</div>
+        <div class="section__list-item">
+          <div class="name">Sample Institute of technology</div>
+          <div class="addr">San Fr, CA</div>
+          <div class="duration">Jan 2011 - Feb 2015</div>
+          <br>
+          <div class="name">Fr developer</div>
+          <div class="desc">did This and that</div>
+          <br>
+          <div class="name">Akount</div>
+          <div class="addr">San Monica, CA</div>
+          <div class="duration">Jan 2011 - Feb 2015</div>
+          <br>
+          <div class="name">Fr developer</div>
+          <div class="desc">did This and that</div>
+        </div>
+
+<br>
+{% endfor %}
+{% endblock%}
+    

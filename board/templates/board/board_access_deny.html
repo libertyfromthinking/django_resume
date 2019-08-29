@@ -1,0 +1,9 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block content %}
+                        <h2 class="page-title">게시판</h2>
+                <br>
+        권한이 없습니다. <a href="{% url 'board:list' %}">리스트로 돌아가기</a><br>
+        
+    
+{% endblock %}

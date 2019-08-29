@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block content %}
+<br>
+                         <h2 class="page-title">게시판</h2>
+                <br>
+                <div class="container">
+        <table class="table table-hover">
+        <thead>
+        <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>날짜</th>
+        <th>조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        {% for object in object_list%}
+        <tr>
+        <th>{{object.id}}</th>
+        <th><a href="{{ object.get_absolute_url }}">{{object.title}}</a></th>
+        <th>{{object.owner.username}}</th>
+        <th>{{object.modify_date}}</th>
+        <th>{{object.board_hits}}</th>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>        
+        </hr><div>
+        <a class="btn btn-outline-secondary btn-sm pull-right" role="button" href="{% url 'board:add' %}" style="float: right !important;">글쓰기</a></div>
+        <div class="text-center">
+        <ul class="center-block">
+        {% if page_obj.has_previous %}
+            <a href="?page={{page_obj.previous_page_number}}">&lt;</a>
+        {% endif %}
+        &nbsp;{{page_obj.number}}/{{page_obj.paginator.num_pages}}&nbsp;
+        {% if page_obj.has_next %}
+            <a href="?page={{page_obj.next_page_number}}">&gt;</a>
+        {% endif %}
+        </ul>
+        </div>
+        </div>
+
+        
+
+        
+        
+    
+{% endblock %}

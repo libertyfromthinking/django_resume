@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block content %}
+<br>
+<h2 class="page-title">기술스택</h2>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+   언어를 클릭하면 해당언어로 만든 프로젝트로 연결됩니다.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<br>
+<table class="table table-bordered">
+        <thead>
+                <tr>
+                        <th scope="col">기술명</th>
+                        <th scope="col">숙련도</th>
+      
+                </tr>
+        </thead>
+        <tbody>
+                {% for object in object_list%}
+                <tr>
+                        <th scope="row"><a href="{% url 'intro:project_tech' object.name%}">{{object.name}}</a> </th>
+                        <td>{{object.level}}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+</table>
+
+
+    
+{% endblock %}
