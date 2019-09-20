@@ -15,12 +15,25 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+from django.core.exceptions import ImproperlyConfigured
+
+
+def get_env_variable(var_name):
+  """환경 변수를 가져오거나 예외를 반환한다."""
+  try:
+    return os.environ[var_name]
+  except KeyError:
+    error_msg = "Set the {} environment variable".format(var_name)
+    raise ImproperlyConfigured(error_msg)
+
+
+SECRET_KEY = get_env_variable("RESUME_SECRET_KEY")
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ws#l!ry&_+sy%1!@j$iho_6=8=(l8%&6p9uexi$o&om4tyl*#('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

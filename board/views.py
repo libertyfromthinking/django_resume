@@ -28,13 +28,14 @@ class BoardDV(FormMixin,DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = self.get_form()
+        context['obj'] = self.get_object()
         return context
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         obj = self.get_object()
-        owner = self.request.user
-        print(owner.is_anonymous)
+        owner = request.user
+
         if form.is_valid() and owner.is_anonymous==False:
             comment = form.save(commit=False)
             comment.board = obj
@@ -43,7 +44,7 @@ class BoardDV(FormMixin,DetailView):
             return redirect('board:detail', slug=obj.slug)
         else:
             return redirect('login')
-         
+     
     def form_valid(self, form):
         return super().form_valid(form)
 
@@ -90,6 +91,7 @@ class SearchFormView(FormView):
 def board_like(request):
     slug = request.POST.get('slug', None)
     board = get_object_or_404(Board, slug=slug)
+    print(dir(request))
     
     board_like, board_like_created = board.like_set.get_or_create(user=request.user)
     
