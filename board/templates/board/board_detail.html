@@ -33,7 +33,7 @@
 <div class="date">
 
 <strong>{{ comment.author }}</strong> | {{ comment.text }} | {{ comment.created_date}}
-<button class="btn btn-outline-secondary btn-sm" href="{% url 'board:remove_comment' pk=comment.pk %}"><span class="glyphicon glyphicon-remove">삭제</span></button>
+<a class="btn btn-outline-secondary btn-sm" href="{% url 'board:remove_comment' pk=comment.pk %}"><span class="glyphicon glyphicon-remove">삭제</span></a>
 </div>
 </div>
 {% endfor %}

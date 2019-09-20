@@ -11,9 +11,6 @@ class Resume(models.Model):
     git_addr = models.TextField('GitAddr', blank=True)
     phone = models.TextField('Phone', blank=True)
     job_objective = models.CharField('Job Objective', max_length=10)
-    qualifications = models.TextField('Qualifications', blank=True)
-    work_experience = models.TextField('Work Experience', blank=True)
-    education = models.TextField('Education', blank=True)
     military_service = models.TextField('Military Service', blank=True)
     hobby = models.TextField('Hobby', blank=True)
     image = ThumbnailImageField(upload_to='img/', null=True, blank=True)
@@ -47,3 +44,21 @@ class Tech(models.Model):
        
     def __str__(self):
         return self.name
+
+class Qualification(models.Model):
+    name = models.CharField('Name', max_length=20)
+    issuer = models.CharField('Issuer', max_length=20)
+    issue_date = models.TextField('Issue Date')
+    resume = models.ForeignKey(Resume, related_name='qualifications', on_delete=models.CASCADE)
+
+class Work_experience(models.Model):
+    name = models.CharField('Name', max_length=20)
+    department = models.CharField('Department', max_length=10)
+    position = models.CharField('Position', max_length=10)
+    employment_period = models.TextField('Employment Period')
+    resume = models.ForeignKey(Resume, related_name='work_experiences', on_delete=models.CASCADE)
+    
+class Education(models.Model):
+    name = models.CharField('Name', max_length=20)
+    study_period = models.TextField('Study Period')
+    resume = models.ForeignKey(Resume, related_name='educations', on_delete=models.CASCADE)

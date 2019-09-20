@@ -11,7 +11,7 @@ from django.db.models import Q
 from django.views.generic.edit import FormMixin
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import AnonymousUser
 # Create your views here.
 
 class BoardLV(ListView):
@@ -30,12 +30,12 @@ class BoardDV(FormMixin,DetailView):
         context['form'] = self.get_form()
         return context
 
-    @login_required
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         obj = self.get_object()
-        owner = self.request.user.username
-        if form.is_valid() and owner!=None:
+        owner = self.request.user
+        print(owner.is_anonymous)
+        if form.is_valid() and owner.is_anonymous==False:
             comment = form.save(commit=False)
             comment.board = obj
             comment.author = owner
@@ -110,8 +110,11 @@ def board_like(request):
 @login_required
 def remove_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
-    comment.delete()
-    board = get_object_or_404(Board, pk=comment.board.id)
-    return redirect('board:detail', slug=board.slug)
+    if comment.author==request.user:
+        comment.delete()
+        board = get_object_or_404(Board, pk=comment.board.id)
+        return redirect('board:detail', slug=board.slug)
+    else:
+        return redirect('board:deny')
 
     

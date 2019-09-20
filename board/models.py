@@ -55,7 +55,6 @@ class Like(models.Model):
 
 class Comment(models.Model):
     board = models.ForeignKey(Board, related_name='comments', on_delete=models.CASCADE)
-    # author = models.CharField(max_length=200, null=True)
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
