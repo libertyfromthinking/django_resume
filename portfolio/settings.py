@@ -16,7 +16,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 from django.core.exceptions import ImproperlyConfigured
+import pymysql
 
+pymysql.install_as_MySQLdb()
 
 def get_env_variable(var_name):
   """환경 변수를 가져오거나 예외를 반환한다."""
@@ -28,6 +30,7 @@ def get_env_variable(var_name):
 
 
 SECRET_KEY = get_env_variable("RESUME_SECRET_KEY")
+#SECRET_KEY = '2(%91+!3s*cla%c%klzrf01_=(l7&gm-+s_i4ti)dp##836)%e'
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,7 +41,7 @@ SECRET_KEY = get_env_variable("RESUME_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -91,11 +94,26 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'portfolio_db', # DB명
+#        'USER': 'admin', # 데이터베이스 계정
+#        'PASSWORD': 'Soekdlaak!1', # 계정 비밀번호
+#        'HOST': 'ec2-ubuntu-django-db.c6owip3n3sik.ap-northeast-2.rds.amazonaws.com', # 데이테베이스 주소(IP)
+#        'PORT': '3306', # 데이터베이스 포트(보통은 3306)
+        'OPTIONS':{
+            'read_default_file':'/home/ubuntu/portfolio_site/django_resume/portfolio/mysql.cnf',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            }
+    }
+}
+'''
+DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
