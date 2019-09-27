@@ -55,6 +55,7 @@ class Work_experience(models.Model):
     name = models.CharField('Name', max_length=20)
     department = models.CharField('Department', max_length=10)
     position = models.CharField('Position', max_length=10)
+    responsibilities = models.TextField('responsibilities', null=True)
     employment_period = models.TextField('Employment Period')
     resume = models.ForeignKey(Resume, related_name='work_experiences', on_delete=models.CASCADE)
     

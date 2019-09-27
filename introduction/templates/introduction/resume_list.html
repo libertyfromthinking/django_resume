@@ -39,6 +39,7 @@
 <br>
 <div class="container">
   <div class="header">
+	  <img src="{{object.image.url}}"/>
     <div class="full-name">
       <h2>
       {{object.name}}
@@ -54,7 +55,7 @@
       <span class="info">연락처 </span>
       <span class="email-val">{{object.phone}}</span> <br>
       <span class="info">취미 </span>
-      <span class="email-val">{{object.phone}}</span> &nbsp;&nbsp;<span class="info"> | </span> &nbsp;&nbsp;
+      <span class="email-val">{{object.hobby}}</span> &nbsp;&nbsp;<span class="info"> | </span> &nbsp;&nbsp;
       <span class="info">병역 </span>
       <span class="email-val">{{object.military_service}}</span>
     </div>
@@ -62,50 +63,39 @@
     <div class="about">
       <span class="position">{{object.job_objective}}</span>
       <span class="desc">
-        저는 파이썬과 장고를 공부했습니다. 블라블라블라입니다. 치킨과 피자가 먹고 싶고 햄버거도 먹고 싶지만 먹은 후엔 속이 더부룩한 게 싫어 먹지 않습니다. 이번 여름은 작년에 비해 매우 짧다고 느껴집니다. 느껴지는 게 아니라 사실이 그렇습니다. 공부는 왜 하기 싫은걸까요. 감사합니다.
+        3년간 영진전문대학에서 컴퓨터정보를 전공하였고 1년간 네트워크 서버 구축/유지보수를 했습니다. 컴퓨터공학으로 학점은행제 학사를 취득하였고 그 과정에서 자바, C, 자바스크립트, jsp, 안드로이드 등을 배웠지만 파이썬이 여러방면에서 가장 낫다고 생각하여 독학으로 공부하였습니다.
       </span>
     </div>
   </div>
   <br>
       <div class="section__title">학력</div>
         <div class="section__list-item">
-          <div class="name">Fr developer</div>
-          <div class="desc">did This and that</div>
+	{% for edu in object.educations.all %}
+	<div class="name">{{edu.name}}</div>
+	<div class="desc">{{edu.study_period}}</div>
           <br>
-          <div class="name">Akount</div>
-          <div class="addr">San Monica, CA</div>
-          <div class="duration">Jan 2011 - Feb 2015</div>
-          <br>
-          <div class="name">Fr developer</div>
-          <div class="desc">did This and that</div>
+	  {% endfor %}
         </div>
 <br><br>
 <div class="section__title">경력</div>
         <div class="section__list-item">
-          <div class="name">Sample Institute of technology</div>
-          <div class="addr">San Fr, CA</div>
-          <div class="duration">Jan 2011 - Feb 2015</div>
+	{% for work in object.work_experiences.all %}
+	<div class="name">{{work.name}}</div>
+	<div class="addr">{{work.position}} / {{work.department}}</div>
+	<div>{{work.responsibilities}}</div>
+	<div class="duration">{{work.employment_period}}</div>
           <br>
-          <div class="name">Sample Institute of technology</div>
-          <div class="addr">San Fr, CA</div>
-          <div class="duration">Jan 2011 - Feb 2015</div>
+	  {% endfor %}
         </div>
 <br><br>
 <div class="section__title">자격증</div>
         <div class="section__list-item">
-          <div class="name">Sample Institute of technology</div>
-          <div class="addr">San Fr, CA</div>
-          <div class="duration">Jan 2011 - Feb 2015</div>
+	{% for qual in object.qualifications.all %}
+	<div class="name">{{qual.name}}</div>
+	<div class="addr">{{qual.issuer}}</div>
+	<div class="duration">{{qual.issue_date}}</div>
           <br>
-          <div class="name">Fr developer</div>
-          <div class="desc">did This and that</div>
-          <br>
-          <div class="name">Akount</div>
-          <div class="addr">San Monica, CA</div>
-          <div class="duration">Jan 2011 - Feb 2015</div>
-          <br>
-          <div class="name">Fr developer</div>
-          <div class="desc">did This and that</div>
+	  {% endfor %}
         </div>
 
 <br>

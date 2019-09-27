@@ -29,8 +29,8 @@ def get_env_variable(var_name):
     raise ImproperlyConfigured(error_msg)
 
 
-SECRET_KEY = get_env_variable("RESUME_SECRET_KEY")
-#SECRET_KEY = '2(%91+!3s*cla%c%klzrf01_=(l7&gm-+s_i4ti)dp##836)%e'
+#SECRET_KEY = get_env_variable("RESUME_SECRET_KEY")
+SECRET_KEY = '2(%91+!3s*cla%c%klzrf01_=(l7&gm-+s_i4ti)dp##836)%e'
 
 
 # Quick-start development settings - unsuitable for production
