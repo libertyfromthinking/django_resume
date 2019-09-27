@@ -29,7 +29,7 @@ class Project(models.Model):
     name = models.CharField('Name', max_length=20)
     slug = models.SlugField('Slug', unique=True, allow_unicode=True, help_text='자동으로 기입되니 입력하지 않으셔도 됩니다.', blank=True, null=True)
     description = models.TextField('Description')
-    git_page = models.TextField('Git Page')
+    link = models.TextField('link', null=True)
     techs = models.ManyToManyField('Tech', related_name='projects')
     
     def __str__(self):
@@ -39,7 +39,7 @@ class Project(models.Model):
         return reverse("intro:project_detail", args=(self.slug,))
         
 class Tech(models.Model):
-    name = models.CharField('Name', max_length=10)
+    name = models.CharField('Name', max_length=30)
     level = models.IntegerField('Level')
        
     def __str__(self):
