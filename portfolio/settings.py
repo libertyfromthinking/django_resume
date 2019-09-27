@@ -29,8 +29,8 @@ def get_env_variable(var_name):
     raise ImproperlyConfigured(error_msg)
 
 
-#SECRET_KEY = get_env_variable("RESUME_SECRET_KEY")
-SECRET_KEY = '2(%91+!3s*cla%c%klzrf01_=(l7&gm-+s_i4ti)dp##836)%e'
+SECRET_KEY = get_env_variable("RESUME_SECRET_KEY")
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -95,11 +95,6 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'portfolio_db', # DB명
-#        'USER': 'admin', # 데이터베이스 계정
-#        'PASSWORD': 'Soekdlaak!1', # 계정 비밀번호
-#        'HOST': 'ec2-ubuntu-django-db.c6owip3n3sik.ap-northeast-2.rds.amazonaws.com', # 데이테베이스 주소(IP)
-#        'PORT': '3306', # 데이터베이스 포트(보통은 3306)
         'OPTIONS':{
             'read_default_file':'/home/ubuntu/portfolio_site/django_resume/portfolio/mysql.cnf',
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
