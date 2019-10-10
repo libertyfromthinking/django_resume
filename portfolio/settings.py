@@ -41,7 +41,7 @@ SECRET_KEY = get_env_variable("RESUME_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['ip-172-31-30-248.ap-northeast-2.compute.internal', '172.31.30.248']
 
 
 # Application definition
