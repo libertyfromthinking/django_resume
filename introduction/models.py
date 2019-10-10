@@ -31,6 +31,7 @@ class Project(models.Model):
     description = models.TextField('Description')
     link = models.TextField('link', null=True)
     techs = models.ManyToManyField('Tech', related_name='projects')
+    git_addr = models.TextField('GitAddr', blank=True)
     
     def __str__(self):
         return self.name

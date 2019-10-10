@@ -1,8 +1,13 @@
 {% extends "index.html" %}
 {% load staticfiles %}
 {% block content %}
+<style type="text/css">
+th{
+	width:10%;
+}
+</style>
 <br>
-<h2 class="page-title">{{object.name}}</h2>
+<h2 class="page-title"><a href="{{object.link}}" >{{object.name}}</a></h2>
 <br>
                 <table class="table table-hover ">
   
@@ -22,7 +27,7 @@
     </tr>
     <tr>
       <th class="text-break">git page</th>
-      <td class="text-break">{{object.git_page}}</td>
+      <td class="text-break"><a href="{{object.git_addr}}">{{object.git_addr}}</a></td>
       
     </tr>
   </tbody>
