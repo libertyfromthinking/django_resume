@@ -29,7 +29,7 @@ class Project(models.Model):
     name = models.CharField('Name', max_length=20)
     slug = models.SlugField('Slug', unique=True, allow_unicode=True, help_text='자동으로 기입되니 입력하지 않으셔도 됩니다.', blank=True, null=True)
     description = models.TextField('Description')
-    link = models.TextField('link', null=True)
+    link = models.TextField('link', null=True, blank=True)
     techs = models.ManyToManyField('Tech', related_name='projects')
     git_addr = models.TextField('GitAddr', blank=True)
     
