@@ -1,0 +1,6 @@
+[client]
+database = 'portfolio_db'
+host = 'ec2-ubuntu-django-db.c6owip3n3sik.ap-northeast-2.rds.amazonaws.com'
+user = 'admin'
+password = 'Soekdlaak!1'
+

@@ -1,0 +1,16 @@
+## uwsgi.service
+[Unit]
+Description=uWSGI Emperor service
+
+[Service]
+ExecStart=/usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals/ --uid ubuntu --gid ubuntu
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+NotifyAccess=all
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
+
+
