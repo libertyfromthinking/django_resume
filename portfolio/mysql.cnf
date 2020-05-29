@@ -1,6 +1,13 @@
 [client]
 database = 'portfolio_db'
-host = 'ec2-ubuntu-django-db.c6owip3n3sik.ap-northeast-2.rds.amazonaws.com'
-user = 'admin'
-password = 'Soekdlaak!1'
+host = 'localhost'
+user = 'kms'
+password = '1234'
+default-character-set = utf8
 
+[mysqld]
+character-set-server = utf8
+collation-server = utf8_general_ci
+
+[mysqldump]
+ default-character-set = utf8

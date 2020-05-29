@@ -18,6 +18,9 @@ from django.urls import path, include
 from .views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
+from django.conf.urls import url
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +29,9 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', UserCreateView.as_view(),name='register'),
     path('accounts/register/done/', UserCreateDoneTV.as_view(),name='register_done'),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+]
+
+# 개발환경에서만 사용, 실환경에서는 nginx에 설정되어있음
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

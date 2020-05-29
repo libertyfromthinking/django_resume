@@ -18,6 +18,7 @@ class BoardLV(ListView):
     model = Board
     paginate_by = 5
 
+# detailview에 댓글 form 추가
 class BoardDV(FormMixin,DetailView):
     model = Board
     form_class = CommentForm
@@ -25,12 +26,7 @@ class BoardDV(FormMixin,DetailView):
     def get_success_url(self):
         return reverse_lazy('board:detail', args=(self.slug,))
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = self.get_form()
-        context['obj'] = self.get_object()
-        return context
-
+    # 댓글의 내용을 입력받았을 때
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         obj = self.get_object()
@@ -62,7 +58,7 @@ class BoardUpdateView(SelfSuperUserRequiredMixin, UpdateView):
     model = Board
     form_class = BoardForm
     template_name = 'board/board_image_form.html'
-    # fields = ['title', 'content', 'image']
+    # fields = ['title', 'content', 'image'] # 폼을 수동으로 지정해서 생략
     success_url = reverse_lazy('board:list')
 
 class BoardDeleteView(SelfSuperUserRequiredMixin, DeleteView):

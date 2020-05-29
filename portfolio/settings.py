@@ -16,9 +16,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 from django.core.exceptions import ImproperlyConfigured
-import pymysql
-
-pymysql.install_as_MySQLdb()
 
 def get_env_variable(var_name):
   """환경 변수를 가져오거나 예외를 반환한다."""
@@ -28,7 +25,7 @@ def get_env_variable(var_name):
     error_msg = "Set the {} environment variable".format(var_name)
     raise ImproperlyConfigured(error_msg)
 
-
+# 시스템의 RESUME_SECRET_KEY를 가져옴
 SECRET_KEY = get_env_variable("RESUME_SECRET_KEY")
 
 
@@ -41,7 +38,7 @@ SECRET_KEY = get_env_variable("RESUME_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ip-172-31-30-248.ap-northeast-2.compute.internal', '172.31.30.248']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -53,9 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'board.apps.BoardConfig',
     'introduction.apps.IntroductionConfig',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -96,7 +93,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS':{
-            'read_default_file':'/home/ubuntu/portfolio_site/django_resume/portfolio/mysql.cnf',
+            'read_default_file':'/home/su/portfolio_site/portfolio/mysql.cnf',
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
             }
     }
@@ -145,14 +142,21 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+# 각 프로젝트마다 static 파일들의 위치
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+# collectstatic 명령을 실행했을 때 static 파일을 모으는 곳
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static")
+# 웹에서 static 파일의 최상위 url
 STATIC_URL = '/static/'
 
-
+# 웹에서 media 파일의 최상위 url
 MEDIA_URL = '/media/'
+# media 파일이 업로드 되는 위치
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #LOGIN_URL = '/accounts/login/'
 #LOGOUT_URL = '/accounts/logout/'
+
+# 로그인 후 리다이렉트 되는 페이지
 LOGIN_REDIRECT_URL = '/'
