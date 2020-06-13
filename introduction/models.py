@@ -72,5 +72,6 @@ class Work_experience(models.Model):
 class Education(models.Model):
     name = models.CharField('Name', max_length=20)
     study_period = models.TextField('Study Period')
+    grade = models.TextField('Grade')
     resume = models.ForeignKey(Resume, related_name='educations',
                                on_delete=models.CASCADE)

@@ -11,4 +11,4 @@ Pip*
 *migrations*
 uwsgi.log
 portfolio.socket
-*mysql.cnf
+portfolio/mysql.cnf

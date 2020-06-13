@@ -72,6 +72,7 @@
         <div class="section__list-item">
 	{% for edu in object.educations.all %}
 	<div class="name">{{edu.name}}</div>
+	<div class="name">{{edu.grade}}</div>
 	<div class="desc">{{edu.study_period}}</div>
           <br>
 	  {% endfor %}
